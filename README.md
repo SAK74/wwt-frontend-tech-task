@@ -21,6 +21,8 @@ The user should be able to modify the data and click the `Apply` button. This ac
 
 Display the current selected filter data on the homepage in JSON format (no design required, just for debug/visibility)
 
+The project must include a GitHub Action that automatically checks the code
+
 Types:
 
 - `FilterItem` — input data format from API / `filterData.json`
@@ -44,16 +46,15 @@ If you install any new technology, describe why you added it and what it’s use
 
 ### How to submit the task
 
-- Create a **private** copy(not fork) of the repository, preserving the full commit history
+- Create a **public** copy(not fork) of the repository, preserving the full commit history
 - Complete the task in this private repository
-- Add @ltlaitoff to the repository for review
 - Inform HR that the task is complete and ready for review
 
-Also, please let us know upfront whether you would like detailed feedback (what exactly was wrong and a score), or if a simple acceptance or rejection response is sufficient.
+Also, please let us know upfront whether you would like detailed feedback (what exactly was wrong and a score), or if a simple acceptance or rejection response is sufficient
 
 ## How to set up the project
 
-All scripts described below (except for _**dependency installation**_) can be used with pnpm instead of npm. They work the same way.
+All scripts described below (except for _**dependency installation**_) can be used with pnpm instead of npm. They work the same way
 
 ### Installing dependencies
 

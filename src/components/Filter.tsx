@@ -1,11 +1,11 @@
 import { type FC, type FormEventHandler, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { fakeReader } from '@src/shared/api/fakeReader'
 import { checkedOptStore } from '@src/store'
+import { useQuery } from '@tanstack/react-query'
 
 import { FilterType } from '@api/types/Filter'
-
-import data from '@temp/filterData.json'
 
 import { SubmitComponent } from './SubmitComponent'
 
@@ -25,39 +25,46 @@ export const Filter: FC<{ onClose: () => void }> = ({ onClose }) => {
 		ev.preventDefault()
 		setIsSubmitting(true)
 	}
+
+	const { data, isLoading } = useQuery({
+		queryKey: ['filters'],
+		queryFn: () => fakeReader().then(items => items.filterItems)
+	})
 	return !isSubmitting ? (
 		<form onSubmit={handleSubmit}>
 			<h1>{t('filter.header')}</h1>
-			{data.filterItems.map(fItem => (
-				<fieldset
-					key={fItem.id}
-					className="grid grid-cols-3"
-					name={fItem.id}
-				>
-					<legend>{fItem.name}</legend>
-					{fItem.options.map(option => (
-						<label key={option.id}>
-							<input
-								type="checkbox"
-								name={option.id}
-								checked={Boolean(
-									selectedOptions[fItem.id]?.includes(option.id)
-								)}
-								onChange={({ target: { checked } }) => {
-									setSelectedOptions(prev => {
-										const opts = checked
-											? [...(prev[fItem.id] ?? []), option.id]
-											: prev[fItem.id].filter(opt => opt !== option.id)
+			{isLoading && <p>Loading data....</p>}
+			{data &&
+				data.map(fItem => (
+					<fieldset
+						key={fItem.id}
+						className="grid grid-cols-3"
+						name={fItem.id}
+					>
+						<legend>{fItem.name}</legend>
+						{fItem.options.map(option => (
+							<label key={option.id}>
+								<input
+									type="checkbox"
+									name={option.id}
+									checked={Boolean(
+										selectedOptions[fItem.id]?.includes(option.id)
+									)}
+									onChange={({ target: { checked } }) => {
+										setSelectedOptions(prev => {
+											const opts = checked
+												? [...(prev[fItem.id] ?? []), option.id]
+												: prev[fItem.id].filter(opt => opt !== option.id)
 
-										return { ...prev, [fItem.id]: opts }
-									})
-								}}
-							/>
-							{option.name}
-						</label>
-					))}
-				</fieldset>
-			))}
+											return { ...prev, [fItem.id]: opts }
+										})
+									}}
+								/>
+								{option.name}
+							</label>
+						))}
+					</fieldset>
+				))}
 			<button>{t('filter.apply')}</button>
 			<button
 				type="button"

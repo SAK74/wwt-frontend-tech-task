@@ -1,1 +1,10 @@
-{}
+{
+	"submit": {
+		"header": "Do you want to apply new filter",
+		"reject": "Use old filter",
+		"submit": "Apply new filter"
+	},
+	"header": "Filter",
+	"apply": "Apply",
+	"clear": "Clear all parameters"
+}

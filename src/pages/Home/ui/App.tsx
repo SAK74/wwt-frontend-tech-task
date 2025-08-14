@@ -2,6 +2,7 @@ import { Suspense, lazy, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Modal } from '@components/Modal'
+import { Button } from '@components/ui/Button'
 
 import { StoredOptions } from './StoredOptions'
 
@@ -23,13 +24,14 @@ export const App = () => {
 			</h1>
 
 			<StoredOptions />
-			<button
+			<Button
+				className="my-8"
 				onClick={() => {
 					setIsModalopen(true)
 				}}
 			>
 				{t('home.open_filter')}
-			</button>
+			</Button>
 
 			{isModalOpen && (
 				<Modal

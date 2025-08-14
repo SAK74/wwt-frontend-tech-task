@@ -21,7 +21,8 @@
 			"@pages/*": ["./src/pages/*"],
 			"@temp/*": ["./src/shared/temp/*"],
 			"@api/*": ["./src/shared/api/*"],
-			"@store/*": ["./src/store/*"]
+			"@store/*": ["./src/store/*"],
+			"@utils/*": ["./src/utils/*"]
 		},
 
 		/* Linting */

@@ -63,10 +63,10 @@ export const OptionsForm: FC<{
 					))}
 				</div>
 			)}
-			<div className="flex justify-center relative items-center mt-8">
-				<Button size="large">{t('filter.apply')}</Button>
+			<div className="flex justify-center relative items-center mt-8 gap-4">
+				<Button>{t('filter.apply')}</Button>
 				<Button
-					className="absolute right-0"
+					className="md:absolute md:right-0"
 					variant="link"
 					type="button"
 					onClick={() => {

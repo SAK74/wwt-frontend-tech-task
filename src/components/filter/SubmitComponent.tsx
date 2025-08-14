@@ -14,16 +14,15 @@ export const SubmitComponent: FC<{
 			<div className="flex justify-center gap-8">
 				<Button
 					variant="outline"
-					size="large"
-					className="px-20"
+					className="md:px-20"
 					onClick={onReject}
 				>
 					{t('filter.submit.reject')}
 				</Button>
 				<Button
-					size="large"
-					className="px-20"
+					className="md:px-20"
 					onClick={onSubmit}
+					ref={button => button?.focus()}
 				>
 					{t('filter.submit.submit')}
 				</Button>

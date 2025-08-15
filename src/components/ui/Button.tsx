@@ -21,7 +21,7 @@ export const Button: FC<PropsWithChildren<ButtonProps>> = ({
 						variant === 'outline',
 					'px-0! bg-background font-medium underline-offset-4 underline hover:bg-initial text-link hover:text-link-hover active:text-link-active active:bg-initial':
 						variant === 'link',
-					'p-2! h-auto! rounded-full bg-background ': variant === 'icon'
+					'p-2! h-auto! rounded-full bg-background': variant === 'icon'
 				},
 				className
 			)}

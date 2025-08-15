@@ -38,7 +38,7 @@ export const Modal: FC<PropsWithChildren<{ onClose: () => void }>> = ({
 
 			<Button
 				variant="icon"
-				className="absolute top-12 right-6"
+				className="absolute top-6 md:top-12 right-6"
 				onClick={() => {
 					dialogRef.current?.close()
 				}}

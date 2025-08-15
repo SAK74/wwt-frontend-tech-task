@@ -11,7 +11,7 @@ export const SubmitComponent: FC<{
 	return (
 		<div className="space-y-30">
 			<h1 className="text-center text-[40px]">{t('filter.submit.header')}</h1>
-			<div className="flex justify-center gap-8">
+			<div className="flex justify-center gap-8 flex-col sm:flex-row">
 				<Button
 					variant="outline"
 					className="md:px-20"

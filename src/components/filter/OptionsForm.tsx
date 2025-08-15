@@ -30,7 +30,7 @@ export const OptionsForm: FC<{
 					{data.map(fItem => (
 						<fieldset
 							key={fItem.id}
-							className="grid grid-cols-3 border-b pb-8 pt-7 gap-x-10 gap-y-4 justify-items-start"
+							className="grid grid-cols-2 sm:grid-cols-3 border-b pb-8 pt-7 gap-x-10 gap-y-4 justify-items-start"
 							name={fItem.id}
 						>
 							<legend className="text-2xl font-medium">{fItem.name}</legend>

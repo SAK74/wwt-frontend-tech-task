@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useFilteredItems } from '@api/queries/filteredItems'
 
-import { Button } from '@components/ui/Button'
+import { Button, CheckBox } from '@components/ui'
 
 export const OptionsForm: FC<{
 	handleSubmit: () => void
@@ -35,29 +35,22 @@ export const OptionsForm: FC<{
 						>
 							<legend className="text-2xl font-medium">{fItem.name}</legend>
 							{fItem.options.map(option => (
-								<label
+								<CheckBox
 									key={option.id}
-									className="inline-flex gap-4 items-center  cursor-pointer"
-								>
-									<input
-										className="size-5 accent-foreground cursor-pointer"
-										type="checkbox"
-										name={option.id}
-										checked={Boolean(
-											selectedOptions[fItem.id]?.includes(option.id)
-										)}
-										onChange={({ target: { checked } }) => {
-											setSelectedOptions(prev => {
-												const opts = checked
-													? [...(prev[fItem.id] ?? []), option.id]
-													: prev[fItem.id].filter(opt => opt !== option.id)
+									label={option.name}
+									checked={Boolean(
+										selectedOptions[fItem.id]?.includes(option.id)
+									)}
+									onChange={({ target: { checked } }) => {
+										setSelectedOptions(prev => {
+											const opts = checked
+												? [...(prev[fItem.id] ?? []), option.id]
+												: prev[fItem.id].filter(opt => opt !== option.id)
 
-												return { ...prev, [fItem.id]: opts }
-											})
-										}}
-									/>
-									<span>{option.name}</span>
-								</label>
+											return { ...prev, [fItem.id]: opts }
+										})
+									}}
+								/>
 							))}
 						</fieldset>
 					))}

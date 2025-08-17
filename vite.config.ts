@@ -23,7 +23,7 @@ export default defineConfig(() => ({
 		svgr({
 			include: '**/*.svg'
 		}),
-		tsconfigPaths(),
+		tsconfigPaths({ root: '.' }),
 		tailwindcss()
 	],
 

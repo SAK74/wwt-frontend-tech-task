@@ -3,7 +3,9 @@ name: Deploy to gh-pages
 on: workflow_dispatch
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -12,10 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup pages
+        uses: actions/configure-pages@v5
+        id: pages
+
       - name: Build static
         run: |
           npm ci
-          npm run build
+          npm run build -- --base=${{steps.pages.outputs.base_path}}
 
       - name: Upload static files as artifact
         uses: actions/upload-pages-artifact@v3

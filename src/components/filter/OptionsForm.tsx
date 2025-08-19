@@ -33,7 +33,26 @@ export const OptionsForm: FC<{
 							className="grid grid-cols-2 sm:grid-cols-3 border-b pb-8 pt-7 gap-x-10 gap-y-4 justify-items-start"
 							name={fItem.id}
 						>
-							<legend className="text-2xl font-medium">{fItem.name}</legend>
+							<legend className="text-2xl font-medium">
+								<CheckBox
+									// indeterminate={
+									// 	selectedOptions[fItem.id].length &&
+									// 	selectedOptions[fItem.id].length !== fItem.options.length
+									// }
+									label={fItem.name}
+									checked={
+										fItem.options.length === selectedOptions[fItem.id]?.length
+									}
+									onChange={({ target: { checked } }) => {
+										setSelectedOptions(prev => ({
+											...prev,
+											[fItem.id]: checked
+												? fItem.options.map(opt => opt.id)
+												: []
+										}))
+									}}
+								/>
+							</legend>
 							{fItem.options.map(option => (
 								<CheckBox
 									key={option.id}

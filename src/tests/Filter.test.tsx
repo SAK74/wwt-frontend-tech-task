@@ -25,6 +25,7 @@ const mockedFiltersData: FilterItem[] = vi.hoisted(() => [
 		]
 	}
 ])
+const inputsAmount = mockedFiltersData[0].options.length + 1
 
 vi.mock('@api/queries/filteredItems', () => ({
 	useFilteredItems: vi
@@ -63,7 +64,7 @@ describe('integration tests', () => {
 	it('should render the filter with empty checks', async () => {
 		render(<Filter onClose={onCloseSpy} />)
 		const renderedOptions = await screen.findAllByRole('checkbox')
-		expect(renderedOptions).toHaveLength(3)
+		expect(renderedOptions).toHaveLength(inputsAmount)
 		renderedOptions.forEach(box => {
 			expect(box).not.toBeChecked()
 		})
@@ -81,7 +82,7 @@ describe('integration tests', () => {
 		})
 		render(<Filter onClose={onCloseSpy} />)
 		const renderedOptions = await screen.findAllByRole('checkbox')
-		expect(renderedOptions).toHaveLength(3)
+		expect(renderedOptions).toHaveLength(inputsAmount)
 		renderedOptions.forEach(box => {
 			expect(box).toBeChecked()
 		})
@@ -99,7 +100,7 @@ describe('integration tests', () => {
 		})
 		render(<Filter onClose={onCloseSpy} />)
 		const renderedOptions = await screen.findAllByRole('checkbox')
-		expect(renderedOptions).toHaveLength(3)
+		expect(renderedOptions).toHaveLength(inputsAmount)
 		renderedOptions.forEach(box => {
 			expect(box).toBeChecked()
 		})
@@ -114,8 +115,8 @@ describe('integration tests', () => {
 	it('should open submit window, store selected options and close the modal', async () => {
 		render(<Filter onClose={onCloseSpy} />)
 		const renderedOptions = await screen.findAllByRole('checkbox')
-		expect(renderedOptions).toHaveLength(3)
-		const firstOPtion = renderedOptions[0]
+		expect(renderedOptions).toHaveLength(inputsAmount)
+		const firstOPtion = renderedOptions[1] // besides group input
 		fireEvent.click(firstOPtion)
 		expect(firstOPtion).toBeChecked()
 
